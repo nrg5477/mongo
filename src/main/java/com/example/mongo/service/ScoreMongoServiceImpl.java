@@ -38,7 +38,7 @@ public class ScoreMongoServiceImpl implements ScoreMongoService{
 
     @Override
     public void update(ScoreDTO document) {
-
+        dao.update(document);
     }
 
     @Override

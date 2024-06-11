@@ -1,16 +1,21 @@
 package com.example.mongo.controller;
 
 import com.example.mongo.dto.ScoreDTO;
+import com.example.mongo.service.ScoreMongoService;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/score")
 public class ScoreController {
+
+    private ScoreMongoService service;
 
     @GetMapping("/search")
     public String searchPage(){
@@ -50,5 +55,11 @@ public class ScoreController {
         }
         model.addAttribute("document", document);
         return view;
+    }
+
+    @PostMapping("/update")
+    public String update(ScoreDTO document) {
+        service.update(document);
+        return "redirect:/score/paginglist?pageNo=0";
     }
 }

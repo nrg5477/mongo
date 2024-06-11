@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 
@@ -70,7 +71,14 @@ public class ScoreMongoDAOImpl implements ScoreMongoDAO{
 
     @Override
     public void update(ScoreDTO document) {
+        Criteria criteria = new Criteria("id");
+        criteria.is(document.getId());
+        Query query = new Query(criteria);
 
+        Update update = new Update();
+        update.set("dept", document.getDept());
+        update.set("addr", document.getAddr());
+        mongoTemplate.updateMulti(query, update, "score");
     }
 
     @Override
@@ -80,7 +88,8 @@ public class ScoreMongoDAOImpl implements ScoreMongoDAO{
 
     @Override
     public List<ScoreDTO> findAll() {
-        return List.of();
+        List<ScoreDTO> list = mongoTemplate.findAll(ScoreDTO.class, "score");
+        return list;
     }
 
     @Override
