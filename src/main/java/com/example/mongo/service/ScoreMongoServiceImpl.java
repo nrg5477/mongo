@@ -1,13 +1,24 @@
 package com.example.mongo.service;
 
+import com.example.mongo.dao.ScoreMongoDAO;
 import com.example.mongo.dto.ScoreDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@RequiredArgsConstructor
 public class ScoreMongoServiceImpl implements ScoreMongoService{
+    private final ScoreMongoDAO dao;
+
+    @Override
+    public ScoreDTO findById(String value) {
+        return dao.findById(value);
+    }
+
     @Override
     public ScoreDTO findById(String key, String value) {
-        return null;
+        return dao.findById;
     }
 
     @Override

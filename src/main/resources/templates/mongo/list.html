@@ -16,13 +16,13 @@
 			<th>삭제</th>
 		</tr>
 
-			<tr>
-				<td><a
-			href="#"></a></td>
-				<td></td>
-				<td ></td>
-				<td></td>
-				<td ></td>
+			<tr th:each="mongo:${mongolist}">
+				<td><a th:href="@{/score/read(key=id, value=${mongo.id},action=read)}" th:text="${mongo.id}"></a></td>
+				<td><a th:href="@{/score/read2(value=${mongo._id},action=read)}" th:text="${mongo._id}"></a></td>
+				<td th:text="${mongo.java}"></td>
+				<td th:text="${mongo.name}></td>
+				<td th:text="${mongo.addr}></td>
+				<td th:text="${mongo.dept}></td>
 				<td>
 			<a href="mybatisDel.do?id=<%=user.getId() %>">삭제</a></td>
 			</tr>

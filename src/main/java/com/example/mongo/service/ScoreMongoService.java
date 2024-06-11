@@ -1,10 +1,12 @@
 package com.example.mongo.service;
 
-import com.example.mongodb.domain.ScoreDTO;
+
+import com.example.mongo.dto.ScoreDTO;
 
 import java.util.List;
 
 public interface ScoreMongoService {
+	public ScoreDTO findById(String value);
 	public ScoreDTO findById(String key, String value);
 	public void insertDocument(ScoreDTO doc);
 	public void insertAllDocument(List<ScoreDTO> docs);
